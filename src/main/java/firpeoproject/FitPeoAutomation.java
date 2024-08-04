@@ -42,12 +42,17 @@ public class FitPeoAutomation {
 
 			actions.dragAndDropBy(slider, 94, 0).perform();
 
-			// adjust the static field to 560 //
-			WebElement sliderValueField = driver.findElement(By.id(":r0:"));
+			// Adjust the static field to 560
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			WebElement sliderValueField = driver.findElement(By.xpath("//input[@type='number']"));
 			sliderValueField.click();
 			Thread.sleep(1000);
-			sliderValueField.clear();
+
+			// Clear the field completely using JavaScript
+			js.executeScript("arguments[0].value = '';", sliderValueField);
 			Thread.sleep(1000);
+
+			// Set the value to 560
 			sliderValueField.sendKeys("560");
 			Thread.sleep(2000);
 
@@ -73,6 +78,7 @@ public class FitPeoAutomation {
 
 			driver.quit();
 		}
+
 	}
 
 }
